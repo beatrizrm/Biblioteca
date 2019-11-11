@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<?php  include('Nacionalidade.php'); ?>
+<?php  include('Editora.php'); ?>
 <html>
 <head>
-    <title>Cadastro de Nacionalidade</title>
+    <title>Cadastro de Editora</title>
     <link rel="stylesheet" type="text/css" href="estilo.css">
 </head>
 <body>
-    <h1 align="center">Cadastro de Nacionalidade</h1>
-    <form method="post" action="NacionalidadeCadastra.php" >
+    <h1 align="center">Cadastro de Editora</h1>
+    <form method="post" action="EditoraCadastra.php" >
         <div class="input-group">
             <label>Código:</label>
             <input type="text" name="codigo" value="">
@@ -19,7 +19,7 @@
         <div class="input-group">
             <button class="btn" type="submit" name="cadastrar" >Cadastrar</button>
             <button class="btn" name="listar" type="button" 
-                    onclick="location.href='NacionalidadeLista.php';">Listar
+                    onclick="location.href='EditoraLista.php';">Listar
             </button>
         </div>
     </form>
@@ -28,10 +28,10 @@
             $codigo = $_POST['codigo'];
             $nome   = $_POST['nome'];
             
-            $n = new Nacionalidade();
-            $n->insere($codigo, $nome);
+            $e = new Editora();
+            $e->insere($codigo, $nome);
 
-            header('location: NacionalidadeLista.php');
+            header('location: EditoraLista.php');
         }
     ?>
 </body>

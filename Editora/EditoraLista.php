@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<?php  include('Nacionalidade.php'); ?>
+<?php  include('Editora.php'); ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -20,26 +20,26 @@ and open the template in the editor.
                     <th colspan="2">Ação</th>
                 </tr>
             </thead>
-            <h1 align="center">Lista de Nacionalidade</h1>
+            <h1 align="center">Lista de Editoras</h1>
             <?php 
-                $n = new Nacionalidade(); 
-                $lista_nacionalidade = $n->lista();
-                foreach($lista_nacionalidade as $lst_nasc) { ?>
+                $e = new Editora(); 
+                $lista_editora = $e->lista();
+                foreach($lista_editora as $lst_ed) { ?>
                 <tr>
-                    <td><?php echo $lst_nasc->getIdnacionalidade(); ?></td>
-                    <td><?php echo $lst_nasc->getNonacionalidade(); ?></td>
+                    <td><?php echo $lst_ed->getIdeditora(); ?></td>
+                    <td><?php echo $lst_ed->getNoeditora();?></td>
                     <td>
-                        <a href="NacionalidadeAltera.php?editar=<?php echo $lst_nasc->getIdnacionalidade() ?>" class="edit_btn">Alterar</a>
+                        <a href="EditoraAltera.php?editar=<?php echo $lst_ed->getIdeditora(); ?>" class="edit_btn">Alterar</a>
                     </td>
                     <td>
-                        <a href="NacionalidadeExclui.php?excluir=<?php echo $lst_nasc->getIdnacionalidade() ?>" 
+                        <a href="EditoraExclui.php?excluir=<?php echo $lst_ed->getIdeditora(); ?>" 
                            class="del_btn">Remover</a>
                     </td>
                 </tr>
             <?php } ?>
             <tfoot>
                 <td colspan="4" align="center">
-                    <br> <button class="btn" name="listar" type="button" onclick="location.href='NacionalidadeCadastra.php';">Cadastrar Nacionalidade</button>
+                    <br> <button class="btn" name="listar" type="button" onclick="location.href='EditoraCadastra.php';">Cadastrar Curso</button>
                 </td>
             </tfoot>
         </table>

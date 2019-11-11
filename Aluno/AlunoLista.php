@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<?php  include('Nacionalidade.php'); ?>
+<?php  include('Aluno.php'); ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -20,26 +20,26 @@ and open the template in the editor.
                     <th colspan="2">Ação</th>
                 </tr>
             </thead>
-            <h1 align="center">Lista de Nacionalidade</h1>
+            <h1 align="center">Lista de Alunos</h1>
             <?php 
-                $n = new Nacionalidade(); 
-                $lista_nacionalidade = $n->lista();
-                foreach($lista_nacionalidade as $lst_nasc) { ?>
+                $a = new Aluno(); 
+                $lista_aluno = $a->lista();
+                foreach($lista_aluno as $lst_alun) { ?>
                 <tr>
-                    <td><?php echo $lst_nasc->getIdnacionalidade(); ?></td>
-                    <td><?php echo $lst_nasc->getNonacionalidade(); ?></td>
+                    <td><?php echo $lst_alun->getNumatricula(); ?></td>
+                    <td><?php echo $lst_alun->getNoaluno();?></td>
                     <td>
-                        <a href="NacionalidadeAltera.php?editar=<?php echo $lst_nasc->getIdnacionalidade() ?>" class="edit_btn">Alterar</a>
+                        <a href="AlunoAltera.php?editar=<?php echo $lst_alun->getNumatricula(); ?>" class="edit_btn">Alterar</a>
                     </td>
                     <td>
-                        <a href="NacionalidadeExclui.php?excluir=<?php echo $lst_nasc->getIdnacionalidade() ?>" 
+                        <a href="AlunoExclui.php?excluir=<?php echo $lst_alun->getNumatricula(); ?>" 
                            class="del_btn">Remover</a>
                     </td>
                 </tr>
             <?php } ?>
             <tfoot>
                 <td colspan="4" align="center">
-                    <br> <button class="btn" name="listar" type="button" onclick="location.href='NacionalidadeCadastra.php';">Cadastrar Nacionalidade</button>
+                    <br> <button class="btn" name="listar" type="button" onclick="location.href='AlunoCadastra.php';">Cadastrar Aluno</button>
                 </td>
             </tfoot>
         </table>

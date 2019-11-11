@@ -1,44 +1,42 @@
 ﻿<?php
 
 include_once('ConexaoBD.php');
-class Nacionalidade {
-    private $idnacionalidade;
-    private $nonacionalidade;
+class Aluno {
+    private $numatricula;
+    private $noaluno;
     
-    function getIdnacionalidade() {
-        return $this->idnacionalidade;
+    function getNumatricula() {
+        return $this->numatricula;
     }
 
-    function getNonacionalidade() {
-        return $this->nonacionalidade;
+    function getNoaluno() {
+        return $this->noaluno;
     }
 
-    function setIdnacionalidade($idnacionalidade) {
-        $this->idnacionalidade = $idnacionalidade;
+    function setNumatricula($numatricula) {
+        $this->numatricula = $numatricula;
     }
 
-    function setNonacionalidade($nonacionalidade) {
-        $this->nonacionalidade = $nonacionalidade;
+    function setNoaluno($noaluno) {
+        $this->noaluno = $noaluno;
     }
 
-    function __construct($idnacionalidade = null, $nonacionalidade = null) {
-        $this->idnacionalidade = $idnacionalidade;
-        $this->nonacionalidade = $nonacionalidade;
+    function __construct($numatricula = null, $noaluno = null) {
+        $this->numatricula = $numatricula;
+        $this->noaluno = $noaluno;
     }
 
     public function lista(){
         try {
-            $sql  = "SELECT IdNacionalidade, NoNacionalidade FROM TbNacionalidade ORDER BY Nonacionalidade";
+            $sql  = "SELECT NuMatricula, NoAluno FROM TbAluno ORDER BY NoAluno";
             $conn = ConexaoBD::conecta();
             $sql  = $conn->query($sql);
             $res = array();  
             while($row = $sql->fetch(PDO::FETCH_OBJ)) {
-                   $Nacionalidade = new Nacionalidade();                
-               $Nacionalidade->setIdnacionalidade($row->IdNacionalidade);
-                $Nacionalidade->setNonacionalidade($row->NoNacionalidade);
-                
-                
-                $res[] = $Nacionalidade;
+                $aluno = new Aluno();
+                $aluno->setNoaluno($row->NoAluno);
+                $aluno->setNumatricula($row->NuMatricula);
+                $res [] = $aluno;
             }
             return $res;
         } catch (Exception $e) {
@@ -46,20 +44,18 @@ class Nacionalidade {
         }     
     }
     
-    public function consulta($idnacionalidade){
+    public function consulta($numatricula){
         try {
-            $sql  = "SELECT IdNacionalidade, NoNacionalidade FROM TbNacionalidade WHERE IdNacionalidade = ".$idnacionalidade." ORDER BY NoNacionalidade";
+            $sql  = "SELECT NuMatricula, NoAluno FROM TbCurso WHERE IdCurso = ".$numatricula." ORDER BY NoAluno";
             $conn = ConexaoBD::conecta();
             $sql  = $conn->query($sql);
 
             $res = array();  
             while($row = $sql->fetch(PDO::FETCH_OBJ)) {
-                $Nacionalidade = new Nacionalidade();                
-               $Nacionalidade->setIdnacionalidade($row->IdNacionalidade);
-                $Nacionalidade->setNonacionalidade($row->NoNacionalidade);
-                
-                
-                $res[] = $Nacionalidade;
+                 $aluno = new Aluno();
+                $aluno->setNoaluno($row->NoAluno);
+                $aluno->setNumatricula($row->NuMatricula);
+                $res [] = $aluno;
             }
             return $res;
         } catch (Exception $e) {
@@ -69,9 +65,9 @@ class Nacionalidade {
     
     public function altera($nome, $codigo){
         try {
-            $sql = "UPDATE TbNacionalidade
-                       SET NoNacionalidade = ? 
-                     WHERE IdNacionalidade = ?"; 
+            $sql = "UPDATE TbAluno
+                       SET NoAluno = ? 
+                     WHERE NuMatricula = ?"; 
             $conn = ConexaoBD::conecta();
 
             $stm = $conn->prepare($sql);
@@ -86,7 +82,7 @@ class Nacionalidade {
     
     public function insere($id, $nome){
       try {
-        $sql = "INSERT INTO TbNacionalidade(IdNacionalidade, NoNacionalidade)
+        $sql = "INSERT INTO TbAluno(NuMatricula, NoAluno)
                 VALUES (?, ?)";
         $conn = ConexaoBD::conecta();
 
@@ -102,7 +98,7 @@ class Nacionalidade {
     
     public function exclui($codigo){
       try {
-	      $sql = "DELETE FROM TbNacionalidade WHERE IdNacionalidade = ?"; 
+	      $sql = "DELETE FROM TbAluno WHERE NuMatricula = ?"; 
 	      $conn = ConexaoBD::conecta();
                                        
 	      $stm = $conn->prepare($sql);

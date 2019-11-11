@@ -1,44 +1,41 @@
 ﻿<?php
 
 include_once('ConexaoBD.php');
-class Nacionalidade {
-    private $idnacionalidade;
-    private $nonacionalidade;
+class Editora {
+    private $ideditora;
+    private $noeditora;
+    function getIdeditora() {
+        return $this->ideditora;
+    }
+
+    function getNoeditora() {
+        return $this->noeditora;
+    }
+
+    function setIdeditora($ideditora) {
+        $this->ideditora = $ideditora;
+    }
+
+    function setNoeditora($noeditora) {
+        $this->noeditora = $noeditora;
+    }
+    function __construct($ideditora = null, $noeditora = null) {
+        $this->ideditora = $ideditora;
+        $this->noeditora = $noeditora;
+    }
+
     
-    function getIdnacionalidade() {
-        return $this->idnacionalidade;
-    }
-
-    function getNonacionalidade() {
-        return $this->nonacionalidade;
-    }
-
-    function setIdnacionalidade($idnacionalidade) {
-        $this->idnacionalidade = $idnacionalidade;
-    }
-
-    function setNonacionalidade($nonacionalidade) {
-        $this->nonacionalidade = $nonacionalidade;
-    }
-
-    function __construct($idnacionalidade = null, $nonacionalidade = null) {
-        $this->idnacionalidade = $idnacionalidade;
-        $this->nonacionalidade = $nonacionalidade;
-    }
-
-    public function lista(){
+        public function lista(){
         try {
-            $sql  = "SELECT IdNacionalidade, NoNacionalidade FROM TbNacionalidade ORDER BY Nonacionalidade";
+            $sql  = "SELECT IdEditora, NoEditora FROM TbEditora ORDER BY NoEditora";
             $conn = ConexaoBD::conecta();
             $sql  = $conn->query($sql);
             $res = array();  
             while($row = $sql->fetch(PDO::FETCH_OBJ)) {
-                   $Nacionalidade = new Nacionalidade();                
-               $Nacionalidade->setIdnacionalidade($row->IdNacionalidade);
-                $Nacionalidade->setNonacionalidade($row->NoNacionalidade);
-                
-                
-                $res[] = $Nacionalidade;
+                $editora = new Editora();
+                $editora->setIdeditora($row->IdEditora);
+                $editora->setNoeditora($row->NoEditora);
+                $res [] = $editora;
             }
             return $res;
         } catch (Exception $e) {
@@ -46,20 +43,18 @@ class Nacionalidade {
         }     
     }
     
-    public function consulta($idnacionalidade){
+    public function consulta($ideditora){
         try {
-            $sql  = "SELECT IdNacionalidade, NoNacionalidade FROM TbNacionalidade WHERE IdNacionalidade = ".$idnacionalidade." ORDER BY NoNacionalidade";
+            $sql  = "SELECT IdEditora, NoEditora FROM TbEditora WHERE IdEditora = ".$ideditora." ORDER BY NoEditora";
             $conn = ConexaoBD::conecta();
             $sql  = $conn->query($sql);
 
             $res = array();  
             while($row = $sql->fetch(PDO::FETCH_OBJ)) {
-                $Nacionalidade = new Nacionalidade();                
-               $Nacionalidade->setIdnacionalidade($row->IdNacionalidade);
-                $Nacionalidade->setNonacionalidade($row->NoNacionalidade);
-                
-                
-                $res[] = $Nacionalidade;
+                 $editora = new Editora();
+                $editora->setIdeditora($row->IdEditora);
+                $editora->setNoeditora($row->NoEditora);
+                $res [] = $editora;
             }
             return $res;
         } catch (Exception $e) {
@@ -69,9 +64,9 @@ class Nacionalidade {
     
     public function altera($nome, $codigo){
         try {
-            $sql = "UPDATE TbNacionalidade
-                       SET NoNacionalidade = ? 
-                     WHERE IdNacionalidade = ?"; 
+            $sql = "UPDATE TbEditora
+                       SET NoEditora = ? 
+                     WHERE IdEditora = ?"; 
             $conn = ConexaoBD::conecta();
 
             $stm = $conn->prepare($sql);
@@ -86,7 +81,7 @@ class Nacionalidade {
     
     public function insere($id, $nome){
       try {
-        $sql = "INSERT INTO TbNacionalidade(IdNacionalidade, NoNacionalidade)
+        $sql = "INSERT INTO TbEditora(IdEditora, NoEditora)
                 VALUES (?, ?)";
         $conn = ConexaoBD::conecta();
 
@@ -102,7 +97,7 @@ class Nacionalidade {
     
     public function exclui($codigo){
       try {
-	      $sql = "DELETE FROM TbNacionalidade WHERE IdNacionalidade = ?"; 
+	      $sql = "DELETE FROM TbEditora WHERE IdEditora = ?"; 
 	      $conn = ConexaoBD::conecta();
                                        
 	      $stm = $conn->prepare($sql);
