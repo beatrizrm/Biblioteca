@@ -15,7 +15,7 @@ and open the template in the editor.
             if (isset($_GET['excluir'])) {
                 $id = $_GET['excluir'];
             
-                $c = new Curso();
+                $c = new Editora();
                 $resp = $c->exclui($id);
 
                 header('location: EditoraLista.php?exclusao='.$resp);

@@ -35,7 +35,7 @@
             $id = $_POST['id'];
             $nome = $_POST['nome'];
             
-            $c = new Curso();
+            $c = new Editora();
             $c->altera($nome, $id);
 
             header('location: EditoraLista.php');

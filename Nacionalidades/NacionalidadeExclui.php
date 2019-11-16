@@ -15,7 +15,7 @@ and open the template in the editor.
             if (isset($_GET['excluir'])) {
                 $id = $_GET['excluir'];
                 $n = new Nacionalidade();
-                $res = $n->exclui($codigo);
+                $res = $n->exclui($id);
 
                 header('location: NacionalidadeLista.php?exclusao='.$resp);
             }
