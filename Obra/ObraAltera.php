@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="estilo.css">
 </head>
 <body>
+    
     <?php
         if (isset($_GET['editar'])) {
             $id = $_GET['editar'];

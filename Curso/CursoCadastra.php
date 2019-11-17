@@ -1,5 +1,6 @@
 
-<?php  include('Curso.php'); ?>
+<?php  include('Curso.php'); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

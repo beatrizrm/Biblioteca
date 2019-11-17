@@ -31,7 +31,7 @@
             $c = new Obra();
             $c->insere($codigo, $nome);
 
-            header('location: ObraLista.php');
+            
         }
     ?>
 </body>

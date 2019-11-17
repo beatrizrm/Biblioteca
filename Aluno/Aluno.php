@@ -4,7 +4,17 @@ include_once('ConexaoBD.php');
 class Aluno {
     private $numatricula;
     private $noaluno;
+    private $nocurso;
     
+    function getNocurso() {
+        return $this->nocurso;
+    }
+
+    function setNocurso($nocurso) {
+        $this->nocurso = $nocurso;
+    }
+
+        
     function getNumatricula() {
         return $this->numatricula;
     }
@@ -21,14 +31,17 @@ class Aluno {
         $this->noaluno = $noaluno;
     }
 
-    function __construct($numatricula = null, $noaluno = null) {
+    function __construct($numatricula = null, $noaluno = null, $nocurso = null) {
         $this->numatricula = $numatricula;
         $this->noaluno = $noaluno;
+        $this->nocurso = $nocurso;
     }
 
     public function lista(){
         try {
-            $sql  = "SELECT NuMatricula, NoAluno FROM TbAluno ORDER BY NoAluno";
+            $sql  = "SELECT a.numatricula, a.noaluno, a.txingresso, b.nocurso from tbaluno as a 
+INNER JOIN tbcurso as b 
+on a.IdCurso = b.IdCurso ORDER BY a.NoAluno";
             $conn = ConexaoBD::conecta();
             $sql  = $conn->query($sql);
             $res = array();  
@@ -36,6 +49,7 @@ class Aluno {
                 $aluno = new Aluno();
                 $aluno->setNoaluno($row->NoAluno);
                 $aluno->setNumatricula($row->NuMatricula);
+                $aluno->setNocurso($row->noCurso);
                 $res [] = $aluno;
             }
             return $res;
@@ -46,7 +60,9 @@ class Aluno {
     
     public function consulta($numatricula){
         try {
-            $sql  = "SELECT NuMatricula, NoAluno FROM TbCurso WHERE IdCurso = ".$numatricula." ORDER BY NoAluno";
+            $sql  = "SELECT a.numatricula, a.noaluno, a.txingresso, b.nocurso from tbaluno as a 
+INNER JOIN tbcurso as b 
+on a.IdCurso = b.IdCurso WHERE a.IdCurso ='$numatricula'. ORDER BY a.NoAluno";
             $conn = ConexaoBD::conecta();
             $sql  = $conn->query($sql);
 
@@ -55,6 +71,7 @@ class Aluno {
                  $aluno = new Aluno();
                 $aluno->setNoaluno($row->NoAluno);
                 $aluno->setNumatricula($row->NuMatricula);
+                $aluno->setNocurso($row->NoCurso);
                 $res [] = $aluno;
             }
             return $res;

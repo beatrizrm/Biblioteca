@@ -17,6 +17,7 @@ and open the template in the editor.
                 <tr>
                     <th>Código</th>
                     <th>Nome</th>
+                    <th>Curso</th>
                     <th colspan="2">Ação</th>
                 </tr>
             </thead>
@@ -28,6 +29,7 @@ and open the template in the editor.
                 <tr>
                     <td><?php echo $lst_alun->getNumatricula(); ?></td>
                     <td><?php echo $lst_alun->getNoaluno();?></td>
+                    <td><?php echo $lst_alun->getNocurso();?></td>
                     <td>
                         <a href="AlunoAltera.php?editar=<?php echo $lst_alun->getNumatricula(); ?>" class="edit_btn">Alterar</a>
                     </td>
