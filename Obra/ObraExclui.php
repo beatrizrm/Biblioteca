@@ -21,7 +21,7 @@ and open the template in the editor.
                 $c = new Obra();
                 $resp = $c->exclui($id);
 
-                header('location: http://localhost/ProjetoBibliotecaPABD/index.php?exclusao='.$resp);
+               header('location: http://localhost/ProjetoBibliotecaPABD/index.php?exclusao='.$resp);
             }
         ?>
     </body>

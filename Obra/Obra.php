@@ -1,6 +1,5 @@
 ﻿<?php
 
-include_once('ConexaoBD.php');
 class Obra {
     private $idobra;
     private $noobra;

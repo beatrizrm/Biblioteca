@@ -18,7 +18,7 @@ and open the template in the editor.
                 $c = new Operador();
                 $resp = $c->exclui($id);
 
-                header('location: OperadorLista.php?exclusao='.$resp);
+                header('location: http://localhost/ProjetoBibliotecaPABD/index.php?exclusao='.$resp);
             }
         ?>
     </body>

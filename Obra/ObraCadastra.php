@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<?php  include('Obra.php'); ?>
+<?php  include('Obra.php'); 
+?>
 <html>
 <head>
     <title>Cadastro de Obras</title>

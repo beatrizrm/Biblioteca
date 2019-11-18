@@ -18,7 +18,7 @@ and open the template in the editor.
                 $c = new Editora();
                 $resp = $c->exclui($id);
 
-                header('location: EditoraLista.php?exclusao='.$resp);
+               header('location: http://localhost/ProjetoBibliotecaPABD/index.php?exclusao='.$resp);
             }
         ?>
     </body>

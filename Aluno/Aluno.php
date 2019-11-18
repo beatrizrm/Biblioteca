@@ -1,11 +1,12 @@
 ﻿<?php
 
-include_once('ConexaoBD.php');
+
+
 class Aluno {
     private $numatricula;
     private $noaluno;
     private $nocurso;
-    
+   
     function getNocurso() {
         return $this->nocurso;
     }
@@ -13,6 +14,8 @@ class Aluno {
     function setNocurso($nocurso) {
         $this->nocurso = $nocurso;
     }
+
+     
 
         
     function getNumatricula() {
@@ -34,14 +37,18 @@ class Aluno {
     function __construct($numatricula = null, $noaluno = null, $nocurso = null) {
         $this->numatricula = $numatricula;
         $this->noaluno = $noaluno;
-        $this->nocurso = $nocurso;
+        $this->nocurso= $nocurso;
     }
 
     public function lista(){
         try {
-            $sql  = "SELECT a.numatricula, a.noaluno, a.txingresso, b.nocurso from tbaluno as a 
-INNER JOIN tbcurso as b 
-on a.IdCurso = b.IdCurso ORDER BY a.NoAluno";
+            $sql  = "SELECT b.NuMatricula,b.NoAluno,
+NoCurso
+
+FROM TbAluno AS b
+INNER JOIN TbCurso AS i
+ON b.IdCurso = i.idcurso";
+            
             $conn = ConexaoBD::conecta();
             $sql  = $conn->query($sql);
             $res = array();  
@@ -49,7 +56,8 @@ on a.IdCurso = b.IdCurso ORDER BY a.NoAluno";
                 $aluno = new Aluno();
                 $aluno->setNoaluno($row->NoAluno);
                 $aluno->setNumatricula($row->NuMatricula);
-                $aluno->setNocurso($row->noCurso);
+                $aluno->setNocurso($row->NoCurso);
+              
                 $res [] = $aluno;
             }
             return $res;
@@ -60,9 +68,12 @@ on a.IdCurso = b.IdCurso ORDER BY a.NoAluno";
     
     public function consulta($numatricula){
         try {
-            $sql  = "SELECT a.numatricula, a.noaluno, a.txingresso, b.nocurso from tbaluno as a 
-INNER JOIN tbcurso as b 
-on a.IdCurso = b.IdCurso WHERE a.IdCurso ='$numatricula'. ORDER BY a.NoAluno";
+            $sql  = "SELECT b.NuMatricula,b.NoAluno,
+NoCurso
+
+FROM TbAluno AS b
+INNER JOIN TbCurso AS i
+ON b.IdCurso = i.idcurso where nuMatricula ='$numatricula'. ORDER BY b.NoAluno";
             $conn = ConexaoBD::conecta();
             $sql  = $conn->query($sql);
 

@@ -18,7 +18,7 @@ and open the template in the editor.
                 $a = new Aluno();
                 $resp = $a->exclui($codigo);
 
-                header('location: AlunoLista.php?exclusao='.$resp);
+                header('location: http://localhost/ProjetoBibliotecaPABD/index.php?exclusao='.$resp);
             }
         ?>
     </body>

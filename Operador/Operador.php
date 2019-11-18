@@ -1,5 +1,4 @@
 ﻿<?php
-
 include_once('ConexaoBD.php');
 class Operador {
     private $idOperador;
